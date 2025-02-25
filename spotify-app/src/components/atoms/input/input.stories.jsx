@@ -1,4 +1,4 @@
-import Input from './input';
+import Input from "./input";
 
 const meta = {
   component: Input,
@@ -7,5 +7,15 @@ const meta = {
 export default meta;
 
 export const Default = {
-  args: {}
+  title: `Text Input`,
+  component: Input,
+  parameters: {
+    layout: `centered`,
+  },
+
+  args: {
+    onchange: () => {
+      console.log("changed");
+    },
+  },
 };
