@@ -26,7 +26,6 @@ export const Default = {
 export const HomePageButton = {
   args: {
     label: "Home",
-    color: "ochre",
     startIcon: <HomeIcon />,
   },
 };

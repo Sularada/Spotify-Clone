@@ -12,7 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+#root {
+  width: 100%;
+  min-height: inherit;
+  padding: 0 !important;
+}
 a {
   font-weight: 500;
   color: #646cff;
