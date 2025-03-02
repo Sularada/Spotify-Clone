@@ -1,7 +1,10 @@
 export default async function getSavedALbums() {
   const token = await getToken();
   const response = await fetch(
-    "https://api.spotify.com/v1/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc",
+    "https://api.spotify.com/v1/browse/categories/0JQ5DAt0tbjZptfcdMSKl3",
+    // "https://api.spotify.com/v1/browse/categories/dinner",
+    // "https://api.spotify.com/v1/users/smedjan/playlists",
+    // "https://api.spotify.com/v1/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc",
     {
       method: `GET`,
       headers: {
