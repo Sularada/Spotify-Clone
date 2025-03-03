@@ -49,7 +49,7 @@ export const PlaylistPageButton = {
 };
 export const LikedSongsPageButton = {
   args: {
-    label: "Create Playlist",
+    label: "Liked Songs",
     startIcon: <FavoriteBorderIcon />,
   },
 };
