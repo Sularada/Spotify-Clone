@@ -1,12 +1,12 @@
 import React from "react";
 import Grid from "@mui/material/Grid2";
-import PageButton from "./components/atoms/pageButton/pageButton";
+import PageButton from "../../atoms/PageButton/PageButton";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-const SideBar = () => {
+const SideBar = ({ playLists = ["1", "2", "3"] }) => {
   return (
     <Grid size={{ xs: 12, sm: 4, md: 3 }}>
       <Grid container>
@@ -22,10 +22,17 @@ const SideBar = () => {
         <Grid size={12}>
           <PageButton startIcon={<AddBoxIcon />} label="Create Playlist" />
         </Grid>
-        <Grid size={12}>
+        <Grid size={12} sx={{ borderBottom: 1, borderColor: "white" }}>
           <PageButton startIcon={<FavoriteBorderIcon />} label="Liked Songs" />
         </Grid>
-        <hr />
+
+        {playLists.map((list) => {
+          return (
+            <Grid size={12}>
+              <PageButton label={list} />
+            </Grid>
+          );
+        })}
       </Grid>
     </Grid>
   );

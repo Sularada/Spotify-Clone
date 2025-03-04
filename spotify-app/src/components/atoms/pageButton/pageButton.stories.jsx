@@ -1,4 +1,4 @@
-import PageButton from "./pageButton";
+import PageButton from "./PageButton/";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
