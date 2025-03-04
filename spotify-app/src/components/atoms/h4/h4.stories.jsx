@@ -1,4 +1,4 @@
-import H4 from "./h4";
+import H4 from "./H4";
 
 const meta = {
   component: H4,

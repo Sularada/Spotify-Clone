@@ -1,5 +1,7 @@
-//import { TextField } from "@mui/material/TextField";
-function Button() {
-  return <button type="button">Button</button>; //<TextField id="outlined-basic" label="Outlined" variant="outlined" />;
+import { ThemeProvider } from "@mui/material/styles";
+import StyledButton from "./styledButton";
+import theme from "../../themes/darkTheme/DarkPageButtonTheme";
+function Button({ icon }) {
+  return <StyledButton color="dark">{icon} </StyledButton>;
 }
 export default Button;

@@ -1,12 +1,12 @@
-import StyledCard from "../../styledComponents/Card";
+import StyledCard from "./StyledCard";
 import {
   StyledCardImageContainer,
   StyledCardImage,
-} from "../../styledComponents/CardImageContainer";
+} from "./CardImageContainer";
 import CardContent from "@mui/material/CardContent";
 import CardActionArea from "@mui/material/CardActionArea";
-import H4 from "../../atoms/h4/h4";
-import P from "../../atoms/p/p";
+import H4 from "../../atoms/H4/H4";
+import P from "../../atoms/P/P";
 export default function CardUnit() {
   return (
     <StyledCard>

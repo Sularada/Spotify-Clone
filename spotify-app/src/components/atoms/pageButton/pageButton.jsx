@@ -1,4 +1,4 @@
-import { StyledPageButton } from "../../styledComponents/PageButton";
+import { StyledPageButton } from "./StyledPageButton";
 import PropTypes from "prop-types";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../../themes/darkTheme/DarkPageButtonTheme";

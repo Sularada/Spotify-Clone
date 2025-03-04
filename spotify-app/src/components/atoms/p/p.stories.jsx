@@ -1,4 +1,4 @@
-import P from "./p";
+import P from "./P";
 
 const meta = {
   component: P,
