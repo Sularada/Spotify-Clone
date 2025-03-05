@@ -1,7 +1,7 @@
-import MusicInfo from "./MusicInfo";
+import MusicPlayer from "./MusicPlayer";
 
 const meta = {
-  component: MusicInfo,
+  component: MusicPlayer,
 };
 
 export default meta;

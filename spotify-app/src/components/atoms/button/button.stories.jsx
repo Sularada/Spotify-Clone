@@ -1,4 +1,4 @@
-import Button from "./button";
+import Button from "./Button";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 const meta = {

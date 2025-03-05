@@ -1,4 +1,3 @@
-import TextField from "@mui/material/TextField";
 import StyledSearchInput from "./StyledSearchInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import { IconButton } from "@mui/material";
