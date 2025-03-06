@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-const SideBar = ({ playLists = ["1", "2", "3"] }) => {
+const SideBar = ({ playLists }) => {
   return (
     <Grid size={{ xs: 12, sm: 4, md: 3 }}>
       <Grid container>
@@ -25,14 +25,15 @@ const SideBar = ({ playLists = ["1", "2", "3"] }) => {
         <Grid size={12} sx={{ borderBottom: 1, borderColor: "white" }}>
           <PageButton startIcon={<FavoriteBorderIcon />} label="Liked Songs" />
         </Grid>
-
-        {playLists.map((list) => {
-          return (
-            <Grid size={12}>
-              <PageButton label={list} />
-            </Grid>
-          );
-        })}
+        <Grid height="100%" overflow="scroll">
+          {playLists.map((item) => {
+            return (
+              <Grid size={12}>
+                <PageButton label={item.name} />
+              </Grid>
+            );
+          })}
+        </Grid>
       </Grid>
     </Grid>
   );

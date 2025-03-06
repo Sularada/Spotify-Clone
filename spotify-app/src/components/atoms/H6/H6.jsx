@@ -1,14 +1,15 @@
 import Typography from "@mui/material/Typography";
-function H4({ text, color = "white" }) {
+function H6({ text, color = "white" }) {
   return (
     <Typography
-      sx={{ margin: "10px 0" }}
       color={color}
-      variant="h4"
+      variant="h6"
       gutterBottom
+      noWrap="true"
+      title={text}
     >
       {text}
     </Typography>
   );
 }
-export default H4;
+export default H6;

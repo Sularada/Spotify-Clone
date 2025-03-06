@@ -20,6 +20,7 @@ const CategoryCard = ({ category }) => {
           flexDirection: "column",
           alignItems: "end",
           justifyContent: "end",
+          margin: "10px 0",
         }}
       >
         <CardContent>
