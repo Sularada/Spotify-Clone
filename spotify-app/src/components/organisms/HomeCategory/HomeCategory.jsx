@@ -23,6 +23,7 @@ const HomeCategory = ({ playlists }) => {
         spacing={2}
         alignItems="center"
         justifyContent="space-between"
+        marginBottom={10}
       >
         {" "}
         {playlists[1].map((item) => {

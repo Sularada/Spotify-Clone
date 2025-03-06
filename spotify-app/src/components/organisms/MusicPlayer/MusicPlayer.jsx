@@ -12,9 +12,12 @@ const MusicPlayer = ({ music }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           flexWrap: "wrap",
-          gap: "30px",
+          width: "-moz-available",
           backgroundColor: "#171818",
           padding: "20px",
+          position: "fixed",
+          bottom: "0",
+          left: "0",
         }}
       >
         <MusicInfo music={music} />

@@ -2,9 +2,10 @@ import StyledSearchInput from "./StyledSearchInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-function Input({ display = "none" }) {
+function Input({ display, onchange }) {
   return (
     <StyledSearchInput
+      onChange={onchange}
       sx={{ display: { display } }}
       disableUnderline
       placeholder="What do you want to listen?"

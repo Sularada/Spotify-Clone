@@ -1,41 +1,513 @@
 import "./App.css";
-import * as React from "react";
-import { styled } from "@mui/material/styles";
 
 import Grid from "@mui/material/Grid2";
-import getSavedALbums from "./Services/WebAPI";
-import PageButton from "./components/atoms/pageButton/pageButton";
-import HomeIcon from "@mui/icons-material/Home";
-import SearchIcon from "@mui/icons-material/Search";
-import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import {
+  getCategories,
+  getCurrentlyPlayedLastMusic,
+  getPlaylistItems,
+  getUsersPlaylists,
+} from "./Services/WebAPI";
+import { useEffect, useState } from "react";
+import HomePage from "./components/pages/HomePage/HomePage";
+
 function App() {
-  getSavedALbums();
+  const [homeplaylists, setHomeplaylists] = useState([]);
+  const [categories, setCategories] = useState();
+  const [loading, setLoading] = useState(true);
+  const [playlists, setPlaylist] = useState();
+  const [music, setMusic] = useState({
+    track: {
+      album: {
+        album_type: "album",
+        total_tracks: 14,
+        available_markets: [
+          "AR",
+          "AU",
+          "AT",
+          "BE",
+          "BO",
+          "BR",
+          "BG",
+          "CL",
+          "CO",
+          "CR",
+          "CY",
+          "CZ",
+          "DK",
+          "DO",
+          "DE",
+          "EC",
+          "EE",
+          "SV",
+          "FI",
+          "FR",
+          "GR",
+          "GT",
+          "HN",
+          "HK",
+          "HU",
+          "IS",
+          "IE",
+          "IT",
+          "LV",
+          "LT",
+          "LU",
+          "MY",
+          "MT",
+          "NL",
+          "NZ",
+          "NI",
+          "NO",
+          "PA",
+          "PY",
+          "PE",
+          "PH",
+          "PL",
+          "PT",
+          "SG",
+          "SK",
+          "ES",
+          "SE",
+          "CH",
+          "TW",
+          "TR",
+          "UY",
+          "GB",
+          "AD",
+          "LI",
+          "MC",
+          "ID",
+          "JP",
+          "TH",
+          "VN",
+          "RO",
+          "IL",
+          "ZA",
+          "SA",
+          "AE",
+          "BH",
+          "QA",
+          "OM",
+          "KW",
+          "EG",
+          "MA",
+          "DZ",
+          "TN",
+          "LB",
+          "JO",
+          "PS",
+          "IN",
+          "BY",
+          "KZ",
+          "MD",
+          "UA",
+          "AL",
+          "BA",
+          "HR",
+          "ME",
+          "MK",
+          "RS",
+          "SI",
+          "KR",
+          "BD",
+          "PK",
+          "LK",
+          "GH",
+          "KE",
+          "NG",
+          "TZ",
+          "UG",
+          "AG",
+          "AM",
+          "BS",
+          "BB",
+          "BZ",
+          "BT",
+          "BW",
+          "BF",
+          "CV",
+          "CW",
+          "DM",
+          "FJ",
+          "GM",
+          "GE",
+          "GD",
+          "GW",
+          "GY",
+          "HT",
+          "JM",
+          "KI",
+          "LS",
+          "LR",
+          "MW",
+          "MV",
+          "ML",
+          "MH",
+          "FM",
+          "NA",
+          "NR",
+          "NE",
+          "PW",
+          "PG",
+          "WS",
+          "SM",
+          "ST",
+          "SN",
+          "SC",
+          "SL",
+          "SB",
+          "KN",
+          "LC",
+          "VC",
+          "SR",
+          "TL",
+          "TO",
+          "TT",
+          "TV",
+          "VU",
+          "AZ",
+          "BN",
+          "BI",
+          "KH",
+          "CM",
+          "TD",
+          "KM",
+          "GQ",
+          "SZ",
+          "GA",
+          "GN",
+          "KG",
+          "LA",
+          "MO",
+          "MR",
+          "MN",
+          "NP",
+          "RW",
+          "TG",
+          "UZ",
+          "ZW",
+          "BJ",
+          "MG",
+          "MU",
+          "MZ",
+          "AO",
+          "CI",
+          "DJ",
+          "ZM",
+          "CD",
+          "CG",
+          "IQ",
+          "LY",
+          "TJ",
+          "VE",
+          "ET",
+          "XK",
+        ],
+        external_urls: {
+          spotify: "https://open.spotify.com/album/6nxDQi0FeEwccEPJeNySoS",
+        },
+        href: "https://api.spotify.com/v1/albums/6nxDQi0FeEwccEPJeNySoS",
+        id: "6nxDQi0FeEwccEPJeNySoS",
+        images: [
+          {
+            url: "https://i.scdn.co/image/ab67616d0000b273407bd04707c463bbb3410737",
+            height: 640,
+            width: 640,
+          },
+          {
+            url: "https://i.scdn.co/image/ab67616d00001e02407bd04707c463bbb3410737",
+            height: 300,
+            width: 300,
+          },
+          {
+            url: "https://i.scdn.co/image/ab67616d00004851407bd04707c463bbb3410737",
+            height: 64,
+            width: 64,
+          },
+        ],
+        name: "Night Visions",
+        release_date: "2012-09-04",
+        release_date_precision: "day",
+        type: "album",
+        uri: "spotify:album:6nxDQi0FeEwccEPJeNySoS",
+        artists: [
+          {
+            external_urls: {
+              spotify: "https://open.spotify.com/artist/53XhwfbYqKCa1cC15pYq2q",
+            },
+            href: "https://api.spotify.com/v1/artists/53XhwfbYqKCa1cC15pYq2q",
+            id: "53XhwfbYqKCa1cC15pYq2q",
+            name: "Imagine Dragons",
+            type: "artist",
+            uri: "spotify:artist:53XhwfbYqKCa1cC15pYq2q",
+          },
+        ],
+      },
+      artists: [
+        {
+          external_urls: {
+            spotify: "https://open.spotify.com/artist/53XhwfbYqKCa1cC15pYq2q",
+          },
+          href: "https://api.spotify.com/v1/artists/53XhwfbYqKCa1cC15pYq2q",
+          id: "53XhwfbYqKCa1cC15pYq2q",
+          name: "Imagine Dragons",
+          type: "artist",
+          uri: "spotify:artist:53XhwfbYqKCa1cC15pYq2q",
+        },
+      ],
+      available_markets: [
+        "AR",
+        "AU",
+        "AT",
+        "BE",
+        "BO",
+        "BR",
+        "BG",
+        "CL",
+        "CO",
+        "CR",
+        "CY",
+        "CZ",
+        "DK",
+        "DO",
+        "DE",
+        "EC",
+        "EE",
+        "SV",
+        "FI",
+        "FR",
+        "GR",
+        "GT",
+        "HN",
+        "HK",
+        "HU",
+        "IS",
+        "IE",
+        "IT",
+        "LV",
+        "LT",
+        "LU",
+        "MY",
+        "MT",
+        "NL",
+        "NZ",
+        "NI",
+        "NO",
+        "PA",
+        "PY",
+        "PE",
+        "PH",
+        "PL",
+        "PT",
+        "SG",
+        "SK",
+        "ES",
+        "CH",
+        "TW",
+        "TR",
+        "UY",
+        "GB",
+        "AD",
+        "LI",
+        "MC",
+        "ID",
+        "JP",
+        "TH",
+        "VN",
+        "RO",
+        "IL",
+        "ZA",
+        "SA",
+        "AE",
+        "BH",
+        "QA",
+        "OM",
+        "KW",
+        "EG",
+        "MA",
+        "DZ",
+        "TN",
+        "LB",
+        "JO",
+        "PS",
+        "IN",
+        "BY",
+        "KZ",
+        "MD",
+        "UA",
+        "AL",
+        "BA",
+        "HR",
+        "ME",
+        "MK",
+        "RS",
+        "SI",
+        "KR",
+        "BD",
+        "PK",
+        "LK",
+        "GH",
+        "KE",
+        "NG",
+        "TZ",
+        "UG",
+        "AG",
+        "AM",
+        "BS",
+        "BB",
+        "BZ",
+        "BT",
+        "BW",
+        "BF",
+        "CV",
+        "CW",
+        "DM",
+        "FJ",
+        "GM",
+        "GE",
+        "GD",
+        "GW",
+        "GY",
+        "HT",
+        "JM",
+        "KI",
+        "LS",
+        "LR",
+        "MW",
+        "MV",
+        "ML",
+        "MH",
+        "FM",
+        "NA",
+        "NR",
+        "NE",
+        "PW",
+        "PG",
+        "WS",
+        "SM",
+        "ST",
+        "SN",
+        "SC",
+        "SL",
+        "SB",
+        "KN",
+        "LC",
+        "VC",
+        "SR",
+        "TL",
+        "TO",
+        "TT",
+        "TV",
+        "VU",
+        "AZ",
+        "BN",
+        "BI",
+        "KH",
+        "CM",
+        "TD",
+        "KM",
+        "GQ",
+        "SZ",
+        "GA",
+        "GN",
+        "KG",
+        "LA",
+        "MO",
+        "MR",
+        "MN",
+        "NP",
+        "RW",
+        "TG",
+        "UZ",
+        "ZW",
+        "BJ",
+        "MG",
+        "MU",
+        "MZ",
+        "AO",
+        "CI",
+        "DJ",
+        "ZM",
+        "CD",
+        "CG",
+        "IQ",
+        "LY",
+        "TJ",
+        "VE",
+        "ET",
+        "XK",
+      ],
+      disc_number: 1,
+      duration_ms: 192280,
+      explicit: false,
+      external_ids: { isrc: "USUM71201073" },
+      external_urls: {
+        spotify: "https://open.spotify.com/track/213x4gsFDm04hSqIUkg88w",
+      },
+      href: "https://api.spotify.com/v1/tracks/213x4gsFDm04hSqIUkg88w",
+      id: "213x4gsFDm04hSqIUkg88w",
+      name: "On Top Of The World",
+      popularity: 71,
+      preview_url: null,
+      track_number: 5,
+      type: "track",
+      uri: "spotify:track:213x4gsFDm04hSqIUkg88w",
+      is_local: false,
+    },
+    played_at: "2025-03-05T22:12:40.132Z",
+    context: {
+      type: "artist",
+      href: "https://api.spotify.com/v1/artists/53XhwfbYqKCa1cC15pYq2q",
+      external_urls: {
+        spotify: "https://open.spotify.com/artist/53XhwfbYqKCa1cC15pYq2q",
+      },
+      uri: "spotify:artist:53XhwfbYqKCa1cC15pYq2q",
+    },
+  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetch = await getUsersPlaylists();
+        const categories = await getCategories();
+        // const fetchMusic = await getCurrentlyPlayedLastMusic();
+        console.log(fetch.items);
+        setPlaylist(fetch.items);
+        setCategories(categories.categories.items);
+        // setMusic(fetchMusic.items[0]);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        fetchHome();
+      }
+    };
+    fetchData();
+  }, []);
+
+  const fetchHome = async () => {
+    try {
+      const fetch_1 = await getPlaylistItems("1CBGDKGM8kekBPfAG5jPZt");
+      const fetch_2 = await getPlaylistItems("3tT3E3Q4u5Xd0v3ySPLR1O");
+      setHomeplaylists([[...fetch_1.items], [...fetch_2.items]]);
+      console.log([[...fetch_1.items], [...fetch_2.items]]);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 4, md: 3 }}>
-          <Grid container>
-            <Grid size={12}>
-              <PageButton startIcon={<HomeIcon />} label="Home" />
-            </Grid>
-            <Grid size={12}>
-              <PageButton startIcon={<SearchIcon />} label="Search" />
-            </Grid>
-            <Grid size={12}>
-              <PageButton
-                startIcon={<LibraryMusicIcon />}
-                label="Your Library"
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 8, md: 9 }}></Grid>
-        <Grid size={{ xs: 6, md: 4 }}></Grid>
-        <Grid size={{ xs: 6, md: 8 }}></Grid>
-      </Grid>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <HomePage
+          homeplaylists={homeplaylists}
+          playlists={playlists}
+          music={music}
+          categories={categories}
+        />
+      )}
     </>
   );
 }

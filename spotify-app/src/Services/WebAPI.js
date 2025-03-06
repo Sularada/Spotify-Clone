@@ -11,10 +11,10 @@ export async function getSavedALbums() {
   );
   if (!response.ok) throw new Error("Bir Hata Oluştu: " + response.status);
   const data = await response.json();
-  console.log(data);
+
   return data;
 }
-export async function getUsersPlaylists(params) {
+export async function getUsersPlaylists() {
   const token = await getToken();
   const response = await fetch(
     "https://api.spotify.com/v1/users/smedjan/playlists",
@@ -27,13 +27,13 @@ export async function getUsersPlaylists(params) {
   );
   if (!response.ok) throw new Error("Bir Hata Oluştu: " + response.status);
   const data = await response.json();
-  console.log(data);
+
   return data;
 }
-export async function getPlaylistItem(id = "3cEYpjA9oz9GiPac4AsH4n") {
+export async function getCategories() {
   const token = await getToken();
   const response = await fetch(
-    `https://api.spotify.com/v1/playlists/${id}/tracks`,
+    "https://api.spotify.com/v1/browse/categories?limit=30",
     {
       method: `GET`,
       headers: {
@@ -43,7 +43,38 @@ export async function getPlaylistItem(id = "3cEYpjA9oz9GiPac4AsH4n") {
   );
   if (!response.ok) throw new Error("Bir Hata Oluştu: " + response.status);
   const data = await response.json();
-  console.log(data);
+
+  return data;
+}
+export async function getPlaylistItems(id = "3cEYpjA9oz9GiPac4AsH4n") {
+  const token = await getToken();
+  const response = await fetch(
+    `https://api.spotify.com/v1/playlists/${id}/tracks?limit=5`,
+    {
+      method: `GET`,
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  if (!response.ok) throw new Error("Bir Hata Oluştu: " + response.status);
+  const data = await response.json();
+
+  return data;
+}
+export async function getCurrentlyPlayedLastMusic() {
+  const token = await getToken();
+  const response = await fetch(
+    "https://api.spotify.com/v1/me/player/recently-played?limit=1",
+    {
+      method: `GET`,
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  if (!response.ok) throw new Error("Bir Hata Oluştu: " + response.status);
+  const data = await response.json();
   return data;
 }
 async function getToken() {
@@ -60,6 +91,6 @@ async function getToken() {
   });
 
   const data = await response.json();
-  console.log(data);
+
   return data.access_token;
 }
