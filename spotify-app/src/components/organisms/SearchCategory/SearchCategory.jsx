@@ -11,6 +11,7 @@ const SearchCategory = ({ categories }) => {
         flexDirection="row"
         flexWrap="wrap"
         justifyContent="space-between"
+        gap="10px"
       >
         {categories.map((item) => {
           return <CategoryCard category={item} />;
